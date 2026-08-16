@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSJ Creative Graphics | Motion Graphics & Video Design Studio</title>
+<meta name="description" content="SSJ Creative Graphics — custom motion graphics, high-converting video ads & reels, and logo animation for brands that want to stand out on social media. Built in After Effects, Premiere Pro, Photoshop & CorelDRAW.">
+<link rel="icon" type="image/png" href="assets/img/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===================================================================
+   SSJ CREATIVE GRAPHICS — DESIGN TOKENS
+=================================================================== */
+:root{
+  --navy-950:#060f1f;
+  --navy-900:#0d2549;
+  --navy-850:#0f2c56;
+  --navy-800:#123262;
+  --navy-700:#1c4275;
+  --line:rgba(200,220,255,0.12);
+  --line-soft:rgba(200,220,255,0.07);
+
+  --teal-300:#8fedde;
+  --teal-400:#3cc5bb;
+  --teal-500:#28a89e;
+  --teal-600:#1b8a82;
+
+  --violet-500:#6a5cff;
+  --violet-glow:rgba(106,92,255,0.28);
+
+  --ink-050:#f4f9fb;
+  --ink-200:#c7d7ea;
+  --ink-400:#93a8c4;
+  --ink-600:#647896;
+
+  --ff-display:'Bricolage Grotesque', 'Noto Sans Devanagari', sans-serif;
+  --ff-body:'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+  --ff-mono:'Space Mono', monospace;
+  --ff-mr:'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;
+
+  --container:1220px;
+  --radius-lg:26px;
+  --radius-md:16px;
+  --radius-sm:10px;
+
+  --ease:cubic-bezier(.22,.68,.32,1);
+}
+
+/* ===================================================================
+   RESET
+=================================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy-950);
+  color:var(--ink-050);
+  font-family:var(--ff-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.lang-mr{ font-family:var(--ff-mr); }
+body.lang-mr h1,body.lang-mr h2,body.lang-mr h3,body.lang-mr h4,
+body.lang-mr .eyebrow,body.lang-mr .btn,body.lang-mr .logo-word{ font-family:var(--ff-mr); letter-spacing:0; }
+
+img{max-width:100%;display:block;}
+video{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea,select{font:inherit;color:inherit;}
+h1,h2,h3,h4{font-family:var(--ff-display);font-weight:700;line-height:1.08;letter-spacing:-0.01em;}
+
+section{position:relative;}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 28px;}
+
+::selection{background:var(--teal-400);color:var(--navy-950);}
+
+:focus-visible{outline:2px solid var(--teal-400);outline-offset:3px;border-radius:4px;}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+
+/* ===================================================================
+   TYPE SCALE / UTILITIES
+=================================================================== */
+.eyebrow{
+  font-family:var(--ff-mono);
+  font-size:12.5px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--teal-400);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:7px;height:7px;
+  background:var(--teal-400);
+  border-radius:2px;
+  transform:rotate(45deg);
+  box-shadow:0 0 12px var(--teal-400);
+  flex:none;
+}
+body.lang-mr .eyebrow{font-family:var(--ff-mr);letter-spacing:0.02em;font-size:13.5px;}
+
+.section-head{max-width:640px;margin-bottom:56px;}
+.section-head h2{font-size:clamp(30px,4vw,44px);}
+.section-head p{color:var(--ink-400);font-size:17px;margin-top:14px;max-width:520px;}
+
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px;border-radius:99px;
+  border:1px solid var(--line);
+  font-size:14px;color:var(--ink-200);
+}
+
+.grain{
+  position:absolute;inset:0;pointer-events:none;opacity:0.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+.reveal-stagger > *{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease), transform .7s var(--ease);}
+.reveal-stagger.is-visible > *{opacity:1;transform:translateY(0);}
+.reveal-stagger.is-visible > *:nth-child(1){transition-delay:.05s;}
+.reveal-stagger.is-visible > *:nth-child(2){transition-delay:.14s;}
+.reveal-stagger.is-visible > *:nth-child(3){transition-delay:.23s;}
+.reveal-stagger.is-visible > *:nth-child(4){transition-delay:.32s;}
+.reveal-stagger.is-visible > *:nth-child(5){transition-delay:.41s;}
+
+/* ===================================================================
+   BUTTONS
+=================================================================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 28px;border-radius:99px;
+  font-weight:700;font-size:15px;
+  white-space:nowrap;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+}
+.btn svg{width:17px;height:17px;flex:none;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--teal-300),var(--teal-400) 60%,var(--teal-500));
+  color:var(--navy-950);
+  box-shadow:0 10px 30px -8px rgba(60,197,187,0.55);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 34px -8px rgba(60,197,187,0.7);}
+.btn-ghost{
+  border:1px solid var(--line);
+  color:var(--ink-050);
+  background:rgba(255,255,255,0.02);
+}
+.btn-ghost:hover{border-color:var(--teal-400);color:var(--teal-300);transform:translateY(-3px);}
+.btn-sm{padding:11px 20px;font-size:13.5px;}
+.btn-block{width:100%;}
+
+/* ===================================================================
+   HEADER / NAV
+=================================================================== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:18px 0;
+  transition:background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(6,15,31,0.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  padding:12px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.brand{display:flex;align-items:center;gap:11px;min-width:0;flex:none;}
+.brand img{width:38px;height:38px;border-radius:9px;flex:none;}
+.logo-word{font-family:var(--ff-display);font-weight:700;font-size:18px;letter-spacing:-0.01em;white-space:nowrap;}
+.logo-word span{color:var(--teal-400);}
+.mobile-cta{display:none;}
+
+.nav-links{display:flex;align-items:center;gap:34px;}
+.nav-links a{
+  font-size:14.5px;font-weight:600;color:var(--ink-200);
+  position:relative;padding:4px 0;
+  transition:color .3s;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--teal-400);
+  transition:width .3s var(--ease);
+}
+.nav-links a:hover{color:var(--ink-050);}
+.nav-links a:hover::after{width:100%;}
+
+.nav-right{display:flex;align-items:center;gap:14px;}
+.lang-btn{
+  font-family:var(--ff-mono);font-size:12.5px;font-weight:700;
+  border:1px solid var(--line);border-radius:99px;
+  padding:8px 15px;color:var(--teal-300);
+  display:flex;align-items:center;gap:7px;
+  transition:border-color .3s, background .3s;
+}
+.lang-btn:hover{border-color:var(--teal-400);background:rgba(60,197,187,0.08);}
+body.lang-mr .lang-btn{font-family:var(--ff-mr);}
+
+.nav-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;position:relative;z-index:101;}
+.nav-toggle svg{width:19px;height:19px;}
+.nav-toggle .icon-close{display:none;}
+
+@media (max-width:1140px){
+  .nav-links{
+    position:fixed;top:0;right:0;bottom:0;
+    width:min(320px,84vw);
+    background:var(--navy-900);
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    gap:6px;
+    padding:100px 30px 30px;
+    transform:translateX(100%);
+    transition:transform .5s var(--ease);
+    border-left:1px solid var(--line);
+    z-index:99;
+  }
+  .nav-links.open{transform:translateX(0);}
+  .nav-links a{width:100%;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:16px;}
+  .nav-toggle{display:flex;}
+  .nav-toggle.open .icon-menu{display:none;}
+  .nav-toggle.open .icon-close{display:block;}
+  .nav-scrim{position:fixed;inset:0;background:rgba(6,15,31,0.6);opacity:0;pointer-events:none;transition:opacity .4s;z-index:98;}
+  .nav-scrim.open{opacity:1;pointer-events:auto;}
+  .header-cta{display:none;}
+  .mobile-cta{display:flex;margin-top:18px;border-bottom:none !important;justify-content:center;}
+  .nav-right{gap:8px;}
+}
+@media (max-width:400px){
+  .logo-word{font-size:14.5px;}
+  .brand img{width:32px;height:32px;}
+  .lang-btn span{display:none;}
+  .lang-btn{padding:9px;}
+  .lang-btn svg{margin:0;}
+}
+
+/* ===================================================================
+   TIMELINE / KEYFRAME SIGNATURE
+=================================================================== */
+.timeline-scrub{
+  position:relative;
+  height:34px;
+  margin:34px 0 8px;
+}
+.timeline-track{
+  position:absolute;top:14px;left:0;right:0;height:2px;
+  background:repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 22px);
+}
+.timeline-track::before{
+  content:"";position:absolute;left:0;top:0;height:2px;width:100%;
+  background:linear-gradient(to right, var(--teal-500), transparent 92%);
+  opacity:0.5;
+}
+.timeline-scrub .keyframe{
+  position:absolute;top:14px;width:9px;height:9px;
+  background:var(--teal-400);
+  transform:translate(-50%,-50%) rotate(45deg);
+  border-radius:2px;
+  box-shadow:0 0 10px rgba(60,197,187,0.7);
+}
+.timeline-scrub .playhead{
+  position:absolute;top:1px;width:2px;height:28px;
+  background:var(--ink-050);
+  left:0%;
+  animation:scrub 7s ease-in-out infinite alternate;
+}
+.timeline-scrub .playhead::before{
+  content:"";position:absolute;top:-4px;left:50%;transform:translateX(-50%);
+  width:8px;height:8px;border-radius:50%;background:var(--ink-050);
+}
+.timeline-scrub .timecode{
+  position:absolute;right:0;top:-22px;
+  font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-600);letter-spacing:0.04em;
+}
+@keyframes scrub{
+  0%{left:2%;}
+  50%{left:63%;}
+  100%{left:88%;}
+}
+@media (prefers-reduced-motion: reduce){
+  .timeline-scrub .playhead{animation:none;left:40%;}
+}
+
+/* ===================================================================
+   HERO
+=================================================================== */
+.hero{
+  padding:168px 0 110px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  pointer-events:none;
+  z-index:0;
+}
+.hero-glow.g1{
+  width:560px;height:560px;
+  background:radial-gradient(circle, rgba(60,197,187,0.35), transparent 70%);
+  top:-220px;left:-160px;
+}
+.hero-glow.g2{
+  width:480px;height:480px;
+  background:radial-gradient(circle, var(--violet-glow), transparent 70%);
+  top:60px;right:-180px;
+}
+.hero-grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1.05fr 0.95fr;
+  gap:64px;align-items:center;
+}
+.hero-eyebrow-row{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+.hero h1{
+  font-size:clamp(40px,5.6vw,68px);
+  letter-spacing:-0.015em;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,var(--teal-300),var(--teal-400) 50%, var(--teal-500));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{
+  margin-top:22px;
+  font-size:18px;
+  color:var(--ink-200);
+  max-width:520px;
+  line-height:1.65;
+}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px;}
+
+.software-strip{
+  display:flex;align-items:center;gap:16px;
+  margin-top:52px;
+  padding-top:26px;
+  border-top:1px solid var(--line-soft);
+}
+.software-strip .label{font-family:var(--ff-mono);font-size:11.5px;color:var(--ink-600);letter-spacing:0.08em;text-transform:uppercase;flex:none;}
+body.lang-mr .software-strip .label{font-family:var(--ff-mr);text-transform:none;letter-spacing:0;}
+.software-strip .marks{display:flex;gap:10px;}
+.software-strip .marks span{
+  font-family:var(--ff-mono);font-weight:700;font-size:13px;
+  width:34px;height:34px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);color:var(--ink-200);
+}
+
+/* Featured reel card */
+.reel-card{
+  position:relative;z-index:1;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--navy-900);
+  box-shadow:0 30px 70px -30px rgba(0,0,0,0.6);
+}
+.reel-card .thumb{
+  position:relative;aspect-ratio:16/10;overflow:hidden;cursor:pointer;
+}
+.reel-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.reel-card .thumb:hover img{transform:scale(1.05);}
+.reel-card .thumb::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(6,15,31,0.85), rgba(6,15,31,0.05) 45%);
+}
+.play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:66px;height:66px;border-radius:50%;
+  background:rgba(244,249,251,0.14);
+  border:1px solid rgba(244,249,251,0.5);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  z-index:2;
+  transition:transform .35s var(--ease), background .35s;
+}
+.play-btn svg{width:22px;height:22px;margin-left:3px;fill:#fff;}
+.reel-card .thumb:hover .play-btn{transform:translate(-50%,-50%) scale(1.1);background:var(--teal-400);border-color:var(--teal-400);}
+.reel-card .thumb:hover .play-btn svg{fill:var(--navy-950);}
+.duration-badge{
+  position:absolute;bottom:14px;right:14px;z-index:2;
+  font-family:var(--ff-mono);font-size:11.5px;
+  background:rgba(6,15,31,0.75);border:1px solid var(--line);
+  padding:5px 10px;border-radius:6px;color:var(--ink-050);
+}
+.reel-meta{padding:20px 22px 24px;}
+.reel-meta .tag{font-family:var(--ff-mono);font-size:11px;color:var(--teal-400);letter-spacing:0.06em;text-transform:uppercase;}
+body.lang-mr .reel-meta .tag{font-family:var(--ff-mr);text-transform:none;}
+.reel-meta h3{font-size:19px;margin-top:8px;}
+.reel-meta .mini-scrub{margin:18px 0 0;height:22px;}
+.reel-meta .mini-scrub .timeline-track{top:9px;}
+.reel-meta .mini-scrub .keyframe{top:9px;}
+.reel-meta .mini-scrub .playhead{height:20px;top:0;}
+.reel-meta .mini-scrub .timecode{display:none;}
+
+/* ===================================================================
+   SECTION SPACING / BG BANDS
+=================================================================== */
+.section{padding:120px 0;}
+.band-alt{background:linear-gradient(180deg, transparent, var(--navy-900) 12%, var(--navy-900) 88%, transparent);}
+
+/* ===================================================================
+   SERVICES
+=================================================================== */
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.service-card{
+  padding:34px 28px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:linear-gradient(160deg, rgba(255,255,255,0.03), transparent 60%);
+  transition:transform .4s var(--ease), border-color .4s;
+}
+.service-card:hover{transform:translateY(-6px);border-color:var(--teal-500);}
+.service-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg, rgba(60,197,187,0.22), rgba(106,92,255,0.14));
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;
+}
+.service-icon svg{width:24px;height:24px;stroke:var(--teal-300);}
+.service-card h3{font-size:20px;margin-bottom:12px;}
+.service-card p{color:var(--ink-400);font-size:15px;line-height:1.65;}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px;align-items:center;}
+.chip-row .also{font-family:var(--ff-mono);font-size:12.5px;color:var(--ink-600);letter-spacing:0.06em;text-transform:uppercase;margin-right:6px;}
+body.lang-mr .chip-row .also{font-family:var(--ff-mr);text-transform:none;}
+.chip{
+  padding:9px 17px;border-radius:99px;border:1px solid var(--line);
+  font-size:13.5px;color:var(--ink-200);
+  background:rgba(255,255,255,0.02);
+}
+
+/* ===================================================================
+   PORTFOLIO
+=================================================================== */
+.sub-heading{
+  display:flex;align-items:baseline;gap:14px;
+  margin:0 0 26px;
+}
+.sub-heading h3{font-size:22px;}
+.sub-heading .count{font-family:var(--ff-mono);font-size:12px;color:var(--ink-600);}
+.portfolio-block + .portfolio-block{margin-top:70px;}
+
+.reel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.poster-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:20px;
+}
+.poster-card{
+  position:relative;border-radius:var(--radius-md);overflow:hidden;
+  border:1px solid var(--line);
+  cursor:pointer;
+  aspect-ratio:4/5;
+  transform:rotate(var(--tilt,0deg));
+  transition:transform .45s var(--ease), border-color .4s;
+}
+.poster-card:nth-child(2n){--tilt:-1.4deg;}
+.poster-card:nth-child(2n+1){--tilt:1.1deg;}
+.poster-card:hover{transform:rotate(0deg) translateY(-6px);border-color:var(--teal-500);z-index:2;}
+.poster-card img{width:100%;height:100%;object-fit:cover;}
+.poster-card::after{
+  content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(6,15,31,0.92), transparent 55%);
+}
+.poster-card .name{
+  position:absolute;left:12px;right:12px;bottom:12px;z-index:2;
+  font-size:12.5px;font-weight:700;line-height:1.35;color:var(--ink-050);
+}
+.poster-card .zoom-hint{
+  position:absolute;top:10px;right:10px;z-index:2;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(6,15,31,0.6);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;
+}
+.poster-card .zoom-hint svg{width:14px;height:14px;}
+.poster-card:hover .zoom-hint{opacity:1;}
+
+/* ===================================================================
+   SOFTWARE
+=================================================================== */
+.software-row{
+  display:flex;flex-wrap:wrap;gap:22px;
+  margin-top:10px;
+}
+.tool-badge{
+  flex:1 1 210px;
+  display:flex;align-items:center;gap:16px;
+  padding:22px 24px;
+  border:1px solid var(--line);border-radius:var(--radius-md);
+  background:var(--navy-900);
+  position:relative;overflow:hidden;
+}
+.tool-badge::before{
+  content:"";position:absolute;width:140px;height:140px;border-radius:50%;
+  filter:blur(50px);opacity:0.5;top:-50px;right:-40px;background:var(--glow,var(--teal-400));
+}
+.tool-badge .mono{
+  position:relative;z-index:1;
+  width:52px;height:52px;border-radius:13px;flex:none;
+  background:var(--navy-950);
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-mono);font-weight:700;font-size:17px;color:var(--teal-300);
+}
+.tool-badge .info{position:relative;z-index:1;}
+.tool-badge .info b{display:block;font-size:15px;font-weight:700;}
+.tool-badge .info span{font-size:12.5px;color:var(--ink-600);}
+
+/* ===================================================================
+   PROCESS
+=================================================================== */
+.process-list{margin-top:26px;}
+.process-step{
+  display:grid;grid-template-columns:64px 1fr;gap:26px;
+  padding:30px 0;
+  border-top:1px solid var(--line-soft);
+}
+.process-step:last-child{border-bottom:1px solid var(--line-soft);}
+.step-kf{
+  width:38px;height:38px;
+  background:var(--navy-900);border:1px solid var(--line);
+  transform:rotate(45deg);
+  display:flex;align-items:center;justify-content:center;
+  border-radius:8px;
+}
+.step-kf span{
+  transform:rotate(-45deg);
+  font-family:var(--ff-mono);font-weight:700;font-size:13px;color:var(--teal-400);
+}
+.process-step h4{font-size:19px;margin-bottom:8px;}
+.process-step p{color:var(--ink-400);font-size:15px;max-width:560px;}
+.process-step-inner{display:flex;flex-direction:column;justify-content:center;}
+
+/* ===================================================================
+   WHY
+=================================================================== */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.why-card{
+  padding:28px 24px;border:1px solid var(--line);border-radius:var(--radius-md);
+  background:rgba(255,255,255,0.02);
+}
+.why-card svg{width:24px;height:24px;stroke:var(--teal-400);margin-bottom:18px;}
+.why-card h4{font-size:16.5px;margin-bottom:10px;line-height:1.3;}
+.why-card p{font-size:13.8px;color:var(--ink-400);line-height:1.6;}
+
+/* ===================================================================
+   CONTACT
+=================================================================== */
+.contact-grid{
+  display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;
+}
+.contact-direct{padding-top:6px;}
+.contact-direct h2{font-size:clamp(30px,4vw,42px);margin-bottom:16px;}
+.contact-direct > p{color:var(--ink-400);font-size:16.5px;max-width:420px;margin-bottom:36px;}
+.contact-link{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius-md);
+  margin-bottom:14px;
+  transition:border-color .3s, transform .3s var(--ease);
+}
+.contact-link:hover{border-color:var(--teal-400);transform:translateX(4px);}
+.contact-link .ic{
+  width:44px;height:44px;border-radius:11px;flex:none;
+  background:rgba(60,197,187,0.12);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+}
+.contact-link .ic svg{width:20px;height:20px;stroke:var(--teal-300);}
+.contact-link .tx span{display:block;font-size:12px;color:var(--ink-600);margin-bottom:2px;}
+.contact-link .tx b{font-size:15.5px;font-weight:700;word-break:break-all;}
+
+.contact-form{
+  padding:36px;border:1px solid var(--line);border-radius:var(--radius-lg);
+  background:var(--navy-900);
+}
+.field{margin-bottom:20px;}
+.field label{display:block;font-size:13px;color:var(--ink-400);margin-bottom:8px;font-weight:600;}
+.field input,.field textarea,.field select{
+  width:100%;
+  background:var(--navy-950);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:13px 15px;
+  color:var(--ink-050);
+  font-size:14.5px;
+  transition:border-color .3s;
+}
+.field select{appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%2393a8c4' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--teal-400);}
+.field textarea{resize:vertical;min-height:110px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-note{font-size:12.5px;color:var(--ink-600);margin-top:14px;text-align:center;}
+
+/* ===================================================================
+   FOOTER
+=================================================================== */
+footer{
+  border-top:1px solid var(--line-soft);
+  padding:64px 0 30px;
+}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+.footer-brand .brand{margin-bottom:16px;}
+.footer-brand p{color:var(--ink-400);font-size:14.5px;max-width:300px;}
+.footer-col h5{font-family:var(--ff-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-600);margin-bottom:18px;}
+body.lang-mr .footer-col h5{font-family:var(--ff-mr);text-transform:none;letter-spacing:0;}
+.footer-col a, .footer-col span{display:block;font-size:14.5px;color:var(--ink-200);margin-bottom:12px;}
+.footer-col a:hover{color:var(--teal-300);}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  padding-top:26px;border-top:1px solid var(--line-soft);
+  font-size:13px;color:var(--ink-600);
+}
+
+/* ===================================================================
+   LIGHTBOX
+=================================================================== */
+.lightbox{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(4,10,20,0.92);
+  backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  padding:30px;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s var(--ease);
+}
+.lightbox.open{opacity:1;pointer-events:auto;}
+.lightbox-inner{
+  max-width:min(920px,92vw);
+  max-height:88vh;
+  width:100%;
+  position:relative;
+}
+.lightbox-inner video, .lightbox-inner img{
+  width:100%;max-height:80vh;object-fit:contain;border-radius:14px;
+  background:#000;
+}
+.lightbox-close{
+  position:absolute;top:-46px;right:0;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,0.08);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+}
+.lightbox-close svg{width:16px;height:16px;}
+.lightbox-caption{margin-top:14px;color:var(--ink-200);font-size:14px;text-align:center;}
+
+/* ===================================================================
+   RESPONSIVE
+=================================================================== */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .poster-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:760px){
+  .hero{padding:130px 0 70px;}
+  .section{padding:80px 0;}
+  .wrap{padding:0 20px;}
+  .services-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .reel-grid{grid-template-columns:1fr;}
+  .poster-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr;gap:40px;}
+  .field-row{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;gap:34px;}
+  .process-step{grid-template-columns:44px 1fr;gap:16px;}
+  .step-kf{width:32px;height:32px;}
+  .contact-form{padding:26px;}
+  .hero-cta-row{flex-direction:column;align-items:stretch;}
+  .hero-cta-row .btn{width:100%;}
+}
+@media (max-width:480px){
+  .poster-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="siteHeader">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <img src="assets/img/logo.png" alt="SSJ Creative Graphics logo">
+      <span class="logo-word">SSJ <span>Creative Graphics</span></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#software" data-i18n="nav.software">Software</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a class="btn btn-primary mobile-cta" href="https://wa.me/917303444470?text=Hi%20SSJ%20Creative%20Graphics%2C%20I%27d%20like%20to%20discuss%20a%20motion%20graphics%20project." target="_blank" rel="noopener" data-i18n="nav.cta">Chat on WhatsApp</a>
+    </nav>
+
+    <div class="nav-right">
+      <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h9M9.5 5v3c0 4-2 7.5-5.5 9.5M7 12c1.5 2.5 4 4.5 8 5.5M14 21l4-9 4 9M15.5 18h5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="langToggleLabel">मराठी</span>
+      </button>
+      <a class="btn btn-primary btn-sm header-cta" href="https://wa.me/917303444470?text=Hi%20SSJ%20Creative%20Graphics%2C%20I%27d%20like%20to%20discuss%20a%20motion%20graphics%20project." target="_blank" rel="noopener" data-i18n="nav.cta">
+        Chat on WhatsApp
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow-row">
+        <span class="eyebrow" data-i18n="hero.eyebrow" style="margin-bottom:0;">Motion Graphics &amp; Video Design Studio</span>
+      </div>
+      <h1 data-i18n="hero.title">Bringing Ideas to Life<br><em>Through Motion.</em></h1>
+      <p class="lead" data-i18n="hero.subhead">SSJ Creative Graphics turns your brand into scroll-stopping motion — animated logos, high-converting reels and video ads crafted frame by frame for social media.</p>
+
+      <div class="hero-cta-row">
+        <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">
+          Start a Project
+        </a>
+        <button class="btn btn-ghost" type="button" data-lightbox-video="assets/video/shiva-tandav.mp4" data-lightbox-caption="hero.reelTitle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg>
+          <span data-i18n="hero.cta2">Watch Showreel</span>
+        </button>
+      </div>
+
+      <div class="timeline-scrub" aria-hidden="true">
+        <div class="timeline-track"></div>
+        <span class="keyframe" style="left:16%"></span>
+        <span class="keyframe" style="left:48%"></span>
+        <span class="keyframe" style="left:80%"></span>
+        <span class="playhead"></span>
+        <span class="timecode">00:00:16:00</span>
+      </div>
+
+      <div class="software-strip">
+        <span class="label" data-i18n="hero.softwareLabel">Crafted with</span>
+        <div class="marks">
+          <span>Ae</span><span>Pr</span><span>Ps</span><span>Cd</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reel-card reveal">
+      <div class="thumb" data-lightbox-video="assets/video/shiva-tandav.mp4" data-lightbox-caption="hero.reelTitle">
+        <img src="assets/img/poster-shiva-tandav.jpg" alt="Shiva Tandav motion graphics still frame" loading="eager">
+        <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="duration-badge">0:16</span>
+      </div>
+      <div class="reel-meta">
+        <span class="tag" data-i18n="hero.reelLabel">Featured Reel</span>
+        <h3 data-i18n="hero.reelTitle">Shiva Tandav — Motion Piece</h3>
+        <div class="timeline-scrub mini-scrub" aria-hidden="true">
+          <div class="timeline-track"></div>
+          <span class="keyframe" style="left:22%"></span>
+          <span class="keyframe" style="left:58%"></span>
+          <span class="playhead"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="services.eyebrow">What I Create</span>
+      <h2 data-i18n="services.title">Motion design built to make people stop scrolling</h2>
+    </div>
+
+    <div class="services-grid reveal-stagger">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg>
+        </div>
+        <h3 data-i18n="services.card1.title">Custom Motion Graphics &amp; Animation</h3>
+        <p data-i18n="services.card1.desc">Bespoke 2D animation and motion graphics designed frame-by-frame around your brand — from concept sketch to final render.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        </div>
+        <h3 data-i18n="services.card2.title">High-Converting Video Ads &amp; Reels</h3>
+        <p data-i18n="services.card2.desc">Scroll-stopping ads and reels engineered for retention — built for Instagram, YouTube and Meta's algorithms.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg>
+        </div>
+        <h3 data-i18n="services.card3.title">Logo Animation &amp; GIFs</h3>
+        <p data-i18n="services.card3.desc">Give your logo a heartbeat. Animated identities and looping GIFs that make your brand memorable in the first two seconds.</p>
+      </div>
+    </div>
+
+    <div class="chip-row reveal">
+      <span class="also" data-i18n="services.chipsLabel">...and also</span>
+      <span class="chip" data-i18n="services.chip1">2D Animation</span>
+      <span class="chip" data-i18n="services.chip2">GIF Animation</span>
+      <span class="chip" data-i18n="services.chip3">Promotional Videos</span>
+      <span class="chip" data-i18n="services.chip4">Product Advertisement Videos</span>
+      <span class="chip" data-i18n="services.chip5">Explainer Videos</span>
+      <span class="chip" data-i18n="services.chip6">YouTube Intro &amp; Outro</span>
+      <span class="chip" data-i18n="services.chip7">Social Media Motion Design</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PORTFOLIO ===================== -->
+<section class="section band-alt" id="portfolio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="portfolio.eyebrow">Selected Work</span>
+      <h2 data-i18n="portfolio.title">A closer look at recent projects</h2>
+    </div>
+
+    <div class="portfolio-block">
+      <div class="sub-heading reveal">
+        <h3 data-i18n="portfolio.reelsHeading">Motion Reels</h3>
+        <span class="count">02</span>
+      </div>
+      <div class="reel-grid reveal-stagger">
+        <div class="reel-card">
+          <div class="thumb" data-lightbox-video="assets/video/shiva-tandav.mp4" data-lightbox-caption="portfolio.video1.title">
+            <img src="assets/img/poster-shiva-tandav.jpg" alt="Shiva Tandav motion piece thumbnail" loading="lazy">
+            <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="duration-badge">0:16</span>
+          </div>
+          <div class="reel-meta">
+            <span class="tag" data-i18n="portfolio.video1.tag">Mythology · Motion Piece · 16s</span>
+            <h3 data-i18n="portfolio.video1.title">Shiva Tandav — Motion Piece</h3>
+          </div>
+        </div>
+        <div class="reel-card">
+          <div class="thumb" data-lightbox-video="assets/video/social-reel-showcase.mp4" data-lightbox-caption="portfolio.video2.title">
+            <img src="assets/img/poster-social-reel.jpg" alt="Instagram health awareness reel thumbnail" loading="lazy">
+            <span class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="duration-badge">1:17</span>
+          </div>
+          <div class="reel-meta">
+            <span class="tag" data-i18n="portfolio.video2.tag">Instagram Reel · Health Awareness Series · 1:17</span>
+            <h3 data-i18n="portfolio.video2.title">Wellness Reel — Social Series</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-block">
+      <div class="sub-heading reveal">
+        <h3 data-i18n="portfolio.posterHeading">Poster &amp; Social Creative Design</h3>
+        <span class="count">05</span>
+      </div>
+      <div class="poster-grid reveal-stagger">
+        <div class="poster-card" data-lightbox-img="assets/img/poster-akshaya-tritiya.jpg" data-lightbox-caption="portfolio.poster1">
+          <img src="assets/img/poster-akshaya-tritiya.jpg" alt="Akshaya Tritiya greeting poster design" loading="lazy">
+          <span class="zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></span>
+          <span class="name" data-i18n="portfolio.poster1">Akshaya Tritiya Greeting Design</span>
+        </div>
+        <div class="poster-card" data-lightbox-img="assets/img/poster-bhim-jayanti.jpg" data-lightbox-caption="portfolio.poster2">
+          <img src="assets/img/poster-bhim-jayanti.jpg" alt="Dr. Babasaheb Ambedkar Jayanti greeting poster design" loading="lazy">
+          <span class="zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></span>
+          <span class="name" data-i18n="portfolio.poster2">Dr. Babasaheb Ambedkar Jayanti Design</span>
+        </div>
+        <div class="poster-card" data-lightbox-img="assets/img/poster-buddha-purnima.jpg" data-lightbox-caption="portfolio.poster3">
+          <img src="assets/img/poster-buddha-purnima.jpg" alt="Buddha Purnima greeting poster design" loading="lazy">
+          <span class="zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></span>
+          <span class="name" data-i18n="portfolio.poster3">Buddha Purnima Greeting Design</span>
+        </div>
+        <div class="poster-card" data-lightbox-img="assets/img/poster-ganesha-sankashti.jpg" data-lightbox-caption="portfolio.poster4">
+          <img src="assets/img/poster-ganesha-sankashti.jpg" alt="Sankashti Chaturthi greeting poster design" loading="lazy">
+          <span class="zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></span>
+          <span class="name" data-i18n="portfolio.poster4">Sankashti Chaturthi Greeting Design</span>
+        </div>
+        <div class="poster-card" data-lightbox-img="assets/img/poster-sankashti-2.jpg" data-lightbox-caption="portfolio.poster5">
+          <img src="assets/img/poster-sankashti-2.jpg" alt="Sankashti Chaturthi greeting poster design, alternate style" loading="lazy">
+          <span class="zoom-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></span>
+          <span class="name" data-i18n="portfolio.poster5">Sankashti Chaturthi Greeting Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOFTWARE ===================== -->
+<section class="section" id="software">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="software.eyebrow">Toolkit</span>
+      <h2 data-i18n="software.title">Built with industry-standard software</h2>
+      <p data-i18n="software.caption">Every project is animated, edited and exported using current, licensed versions of these tools.</p>
+    </div>
+    <div class="software-row reveal-stagger">
+      <div class="tool-badge" style="--glow:#8f7bff">
+        <span class="mono">Ae</span>
+        <div class="info"><b>Adobe After Effects</b><span data-i18n="software.tag.ae">Animation &amp; motion graphics</span></div>
+      </div>
+      <div class="tool-badge" style="--glow:#7b5bff">
+        <span class="mono">Pr</span>
+        <div class="info"><b>Adobe Premiere Pro</b><span data-i18n="software.tag.pr">Editing &amp; color grading</span></div>
+      </div>
+      <div class="tool-badge" style="--glow:#3cc5bb">
+        <span class="mono">Ps</span>
+        <div class="info"><b>Adobe Photoshop</b><span data-i18n="software.tag.ps">Design &amp; compositing</span></div>
+      </div>
+      <div class="tool-badge" style="--glow:#4fd17a">
+        <span class="mono">Cd</span>
+        <div class="info"><b>CorelDRAW</b><span data-i18n="software.tag.cd">Vector illustration</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="section band-alt" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="process.eyebrow">How It Works</span>
+      <h2 data-i18n="process.title">From brief to final render</h2>
+    </div>
+
+    <div class="timeline-scrub reveal" aria-hidden="true" style="max-width:760px;">
+      <div class="timeline-track"></div>
+      <span class="keyframe" style="left:5%"></span>
+      <span class="keyframe" style="left:27%"></span>
+      <span class="keyframe" style="left:50%"></span>
+      <span class="keyframe" style="left:73%"></span>
+      <span class="keyframe" style="left:95%"></span>
+      <span class="playhead"></span>
+    </div>
+
+    <div class="process-list reveal-stagger">
+      <div class="process-step">
+        <div class="process-step-inner"><div class="step-kf"><span>01</span></div></div>
+        <div>
+          <h4 data-i18n="process.step1.title">Brief &amp; Reference</h4>
+          <p data-i18n="process.step1.desc">Share your goals, brand assets and any reference reels you like — the clearer the brief, the sharper the output.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-inner"><div class="step-kf"><span>02</span></div></div>
+        <div>
+          <h4 data-i18n="process.step2.title">Concept &amp; Storyboard</h4>
+          <p data-i18n="process.step2.desc">A visual direction and shot-by-shot storyboard, so you approve the idea before a single frame is animated.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-inner"><div class="step-kf"><span>03</span></div></div>
+        <div>
+          <h4 data-i18n="process.step3.title">Animation &amp; Motion Design</h4>
+          <p data-i18n="process.step3.desc">Frame-by-frame animation in After Effects, built around your brand's colours, type and pace.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-inner"><div class="step-kf"><span>04</span></div></div>
+        <div>
+          <h4 data-i18n="process.step4.title">Sound &amp; Polish</h4>
+          <p data-i18n="process.step4.desc">Music, SFX and colour grading layered in Premiere Pro for a broadcast-ready finish.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-inner"><div class="step-kf"><span>05</span></div></div>
+        <div>
+          <h4 data-i18n="process.step5.title">Export &amp; Delivery</h4>
+          <p data-i18n="process.step5.desc">Delivered pre-formatted for Reels, Shorts, Stories and YouTube — ready to post.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY ===================== -->
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="why.eyebrow">Why Work With SSJ</span>
+      <h2 data-i18n="why.title">Small studio. Senior-level craft.</h2>
+    </div>
+    <div class="why-grid reveal-stagger">
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        <h4 data-i18n="why.card1.title">Latest Software</h4>
+        <p data-i18n="why.card1.desc">Always animated and edited on current, licensed versions of After Effects, Premiere Pro, Photoshop and CorelDRAW.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="10" rx="2"/><path d="M7 18h6M10 14v4"/></svg>
+        <h4 data-i18n="why.card2.title">Platform-Ready Exports</h4>
+        <p data-i18n="why.card2.desc">Every project is delivered pre-sized for Instagram, YouTube Shorts and Stories — no re-editing on your end.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3z"/></svg>
+        <h4 data-i18n="why.card3.title">Direct Line to Your Designer</h4>
+        <p data-i18n="why.card3.desc">No account managers in between — you brief and review directly over WhatsApp.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>
+        <h4 data-i18n="why.card4.title">Built Around Your Brief</h4>
+        <p data-i18n="why.card4.desc">Every animation is built from your brand's colours, fonts and voice — never a generic template.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="section band-alt" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-direct reveal">
+      <span class="eyebrow" data-i18n="contact.eyebrow">Get In Touch</span>
+      <h2 data-i18n="contact.title">Let's animate your next idea</h2>
+      <p data-i18n="contact.subhead">Tell me about your project and I'll get back to you with a plan and quote.</p>
+
+      <a class="contact-link" href="mailto:ssjcreativegraphics@gmail.com">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 8 10-8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="tx"><span data-i18n="contact.emailLabel">Email</span><b>ssjcreativegraphics@gmail.com</b></span>
+      </a>
+      <a class="contact-link" href="https://wa.me/917303444470?text=Hi%20SSJ%20Creative%20Graphics%2C%20I%27d%20like%20to%20discuss%20a%20motion%20graphics%20project." target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.5 19L4 20z" stroke-linejoin="round"/><path d="M8.5 9.7c0 3 2.7 5.6 5.7 5.6" stroke-linecap="round"/></svg></span>
+        <span class="tx"><span data-i18n="contact.whatsappLabel">WhatsApp</span><b>+91 73034 44470</b></span>
+      </a>
+
+      <div class="timeline-scrub" aria-hidden="true" style="max-width:340px;margin-top:44px;">
+        <div class="timeline-track"></div>
+        <span class="keyframe" style="left:30%"></span>
+        <span class="keyframe" style="left:70%"></span>
+        <span class="playhead"></span>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+      <div class="field-row">
+        <div class="field">
+          <label data-i18n="contact.form.name">Name</label>
+          <input type="text" name="name" required data-i18n-attr="placeholder" data-i18n="contact.form.namePh" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label data-i18n="contact.form.contact">Email or Phone</label>
+          <input type="text" name="contact" required data-i18n-attr="placeholder" data-i18n="contact.form.contactPh" placeholder="How can I reach you?">
+        </div>
+      </div>
+      <div class="field">
+        <label data-i18n="contact.form.type">Project Type</label>
+        <select name="type">
+          <option data-i18n="contact.form.opt1">Custom Motion Graphics</option>
+          <option data-i18n="contact.form.opt2">Video Ad / Reel</option>
+          <option data-i18n="contact.form.opt3">Logo Animation</option>
+          <option data-i18n="contact.form.opt4">GIF Animation</option>
+          <option data-i18n="contact.form.opt5">Explainer Video</option>
+          <option data-i18n="contact.form.opt6">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label data-i18n="contact.form.message">Message</label>
+        <textarea name="message" data-i18n-attr="placeholder" data-i18n="contact.form.messagePh" placeholder="Tell me a bit about your brand and what you need..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" data-i18n="contact.form.submit">Send via Email</button>
+      <p class="form-note" data-i18n="contact.form.note">This opens your email app with your details filled in.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <img src="assets/img/logo.png" alt="SSJ Creative Graphics logo">
+          <span class="logo-word">SSJ <span>Creative Graphics</span></span>
+        </a>
+        <p data-i18n="footer.tagline">Bringing ideas to life through motion — custom animation and video for brands that want to be seen.</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.linksHeading">Quick Links</h5>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="#process" data-i18n="nav.process">Process</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.contactHeading">Contact</h5>
+        <a href="mailto:ssjcreativegraphics@gmail.com">ssjcreativegraphics@gmail.com</a>
+        <a href="https://wa.me/917303444470" target="_blank" rel="noopener">+91 73034 44470</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 SSJ Creative Graphics. All rights reserved.</span>
+      <span>Ae · Pr · Ps · Cd</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner" id="lightboxInner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </button>
+    <div id="lightboxMedia"></div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+const translations = {
+  en: {
+    "nav.services":"Services","nav.portfolio":"Portfolio","nav.software":"Software",
+    "nav.process":"Process","nav.contact":"Contact","nav.cta":"Chat on WhatsApp",
+
+    "hero.eyebrow":"Motion Graphics & Video Design Studio",
+    "hero.title":"Bringing Ideas to Life<br><em>Through Motion.</em>",
+    "hero.subhead":"SSJ Creative Graphics turns your brand into scroll-stopping motion — animated logos, high-converting reels and video ads crafted frame by frame for social media.",
+    "hero.cta1":"Start a Project","hero.cta2":"Watch Showreel",
+    "hero.softwareLabel":"Crafted with",
+    "hero.reelLabel":"Featured Reel","hero.reelTitle":"Shiva Tandav — Motion Piece",
+
+    "services.eyebrow":"What I Create",
+    "services.title":"Motion design built to make people stop scrolling",
+    "services.card1.title":"Custom Motion Graphics & Animation",
+    "services.card1.desc":"Bespoke 2D animation and motion graphics designed frame-by-frame around your brand — from concept sketch to final render.",
+    "services.card2.title":"High-Converting Video Ads & Reels",
+    "services.card2.desc":"Scroll-stopping ads and reels engineered for retention — built for Instagram, YouTube and Meta's algorithms.",
+    "services.card3.title":"Logo Animation & GIFs",
+    "services.card3.desc":"Give your logo a heartbeat. Animated identities and looping GIFs that make your brand memorable in the first two seconds.",
+    "services.chipsLabel":"...and also",
+    "services.chip1":"2D Animation","services.chip2":"GIF Animation","services.chip3":"Promotional Videos",
+    "services.chip4":"Product Advertisement Videos","services.chip5":"Explainer Videos",
+    "services.chip6":"YouTube Intro & Outro","services.chip7":"Social Media Motion Design",
+
+    "portfolio.eyebrow":"Selected Work",
+    "portfolio.title":"A closer look at recent projects",
+    "portfolio.reelsHeading":"Motion Reels",
+    "portfolio.posterHeading":"Poster & Social Creative Design",
+    "portfolio.video1.title":"Shiva Tandav — Motion Piece",
+    "portfolio.video1.tag":"Mythology · Motion Piece · 16s",
+    "portfolio.video2.title":"Wellness Reel — Social Series",
+    "portfolio.video2.tag":"Instagram Reel · Health Awareness Series · 1:17",
+    "portfolio.poster1":"Akshaya Tritiya Greeting Design",
+    "portfolio.poster2":"Dr. Babasaheb Ambedkar Jayanti Design",
+    "portfolio.poster3":"Buddha Purnima Greeting Design",
+    "portfolio.poster4":"Sankashti Chaturthi Greeting Design",
+    "portfolio.poster5":"Sankashti Chaturthi Greeting Design",
+
+    "software.eyebrow":"Toolkit",
+    "software.title":"Built with industry-standard software",
+    "software.caption":"Every project is animated, edited and exported using current, licensed versions of these tools.",
+    "software.tag.ae":"Animation & motion graphics","software.tag.pr":"Editing & color grading",
+    "software.tag.ps":"Design & compositing","software.tag.cd":"Vector illustration",
+
+    "process.eyebrow":"How It Works",
+    "process.title":"From brief to final render",
+    "process.step1.title":"Brief & Reference",
+    "process.step1.desc":"Share your goals, brand assets and any reference reels you like — the clearer the brief, the sharper the output.",
+    "process.step2.title":"Concept & Storyboard",
+    "process.step2.desc":"A visual direction and shot-by-shot storyboard, so you approve the idea before a single frame is animated.",
+    "process.step3.title":"Animation & Motion Design",
+    "process.step3.desc":"Frame-by-frame animation in After Effects, built around your brand's colours, type and pace.",
+    "process.step4.title":"Sound & Polish",
+    "process.step4.desc":"Music, SFX and colour grading layered in Premiere Pro for a broadcast-ready finish.",
+    "process.step5.title":"Export & Delivery",
+    "process.step5.desc":"Delivered pre-formatted for Reels, Shorts, Stories and YouTube — ready to post.",
+
+    "why.eyebrow":"Why Work With SSJ",
+    "why.title":"Small studio. Senior-level craft.",
+    "why.card1.title":"Latest Software",
+    "why.card1.desc":"Always animated and edited on current, licensed versions of After Effects, Premiere Pro, Photoshop and CorelDRAW.",
+    "why.card2.title":"Platform-Ready Exports",
+    "why.card2.desc":"Every project is delivered pre-sized for Instagram, YouTube Shorts and Stories — no re-editing on your end.",
+    "why.card3.title":"Direct Line to Your Designer",
+    "why.card3.desc":"No account managers in between — you brief and review directly over WhatsApp.",
+    "why.card4.title":"Built Around Your Brief",
+    "why.card4.desc":"Every animation is built from your brand's colours, fonts and voice — never a generic template.",
+
+    "contact.eyebrow":"Get In Touch",
+    "contact.title":"Let's animate your next idea",
+    "contact.subhead":"Tell me about your project and I'll get back to you with a plan and quote.",
+    "contact.emailLabel":"Email","contact.whatsappLabel":"WhatsApp",
+    "contact.form.name":"Name","contact.form.namePh":"Your name",
+    "contact.form.contact":"Email or Phone","contact.form.contactPh":"How can I reach you?",
+    "contact.form.type":"Project Type",
+    "contact.form.opt1":"Custom Motion Graphics","contact.form.opt2":"Video Ad / Reel",
+    "contact.form.opt3":"Logo Animation","contact.form.opt4":"GIF Animation",
+    "contact.form.opt5":"Explainer Video","contact.form.opt6":"Other",
+    "contact.form.message":"Message","contact.form.messagePh":"Tell me a bit about your brand and what you need...",
+    "contact.form.submit":"Send via Email",
+    "contact.form.note":"This opens your email app with your details filled in.",
+
+    "footer.tagline":"Bringing ideas to life through motion — custom animation and video for brands that want to be seen.",
+    "footer.linksHeading":"Quick Links","footer.contactHeading":"Contact",
+    "footer.rights":"© 2026 SSJ Creative Graphics. All rights reserved."
+  },
+  mr: {
+    "nav.services":"सेवा","nav.portfolio":"पोर्टफोलिओ","nav.software":"सॉफ्टवेअर",
+    "nav.process":"कार्यपद्धती","nav.contact":"संपर्क","nav.cta":"व्हॉट्सॲपवर बोला",
+
+    "hero.eyebrow":"मोशन ग्राफिक्स आणि व्हिडिओ डिझाईन स्टुडिओ",
+    "hero.title":"मोशनच्या माध्यमातून<br><em>कल्पनांना जिवंत करतो.</em>",
+    "hero.subhead":"SSJ Creative Graphics तुमच्या ब्रँडला खिळवून ठेवणाऱ्या मोशनमध्ये रूपांतरित करतो — ॲनिमेटेड लोगो, हाय-कन्व्हर्टिंग रील्स आणि सोशल मीडियासाठी फ्रेम-दर-फ्रेम तयार केलेल्या व्हिडिओ जाहिराती.",
+    "hero.cta1":"प्रोजेक्ट सुरू करा","hero.cta2":"शोरील पाहा",
+    "hero.softwareLabel":"या सॉफ्टवेअरने तयार",
+    "hero.reelLabel":"फीचर्ड रील","hero.reelTitle":"शिव तांडव — मोशन पीस",
+
+    "services.eyebrow":"आम्ही काय तयार करतो",
+    "services.title":"लोकांना स्क्रोल थांबवायला लावणारी मोशन डिझाईन",
+    "services.card1.title":"कस्टम मोशन ग्राफिक्स आणि ॲनिमेशन",
+    "services.card1.desc":"तुमच्या ब्रँडसाठी खास, संकल्पनेपासून अंतिम रेंडरपर्यंत फ्रेम-दर-फ्रेम तयार केलेले 2D ॲनिमेशन आणि मोशन ग्राफिक्स.",
+    "services.card2.title":"हाय-कन्व्हर्टिंग व्हिडिओ ॲड्स आणि रील्स",
+    "services.card2.desc":"Instagram, YouTube आणि Meta च्या अल्गोरिदमसाठी खास तयार केलेल्या, प्रेक्षकांना खिळवून ठेवणाऱ्या जाहिराती आणि रील्स.",
+    "services.card3.title":"लोगो ॲनिमेशन आणि GIFs",
+    "services.card3.desc":"तुमच्या लोगोला जिवंतपणा द्या. पहिल्या दोन सेकंदातच ब्रँड लक्षात राहील असे ॲनिमेटेड आयडेंटिटी आणि लूपिंग GIFs.",
+    "services.chipsLabel":"...आणि",
+    "services.chip1":"2D ॲनिमेशन","services.chip2":"GIF ॲनिमेशन","services.chip3":"प्रमोशनल व्हिडिओ",
+    "services.chip4":"प्रॉडक्ट ॲडव्हर्टायझमेंट व्हिडिओ","services.chip5":"एक्सप्लेनर व्हिडिओ",
+    "services.chip6":"YouTube इंट्रो आणि आउट्रो","services.chip7":"सोशल मीडिया मोशन डिझाईन",
+
+    "portfolio.eyebrow":"निवडक काम",
+    "portfolio.title":"अलीकडील प्रोजेक्ट्सवर एक नजर",
+    "portfolio.reelsHeading":"मोशन रील्स",
+    "portfolio.posterHeading":"पोस्टर आणि सोशल क्रिएटिव्ह डिझाईन",
+    "portfolio.video1.title":"शिव तांडव — मोशन पीस",
+    "portfolio.video1.tag":"पौराणिक · मोशन पीस · १६ सेकंद",
+    "portfolio.video2.title":"वेलनेस रील — सोशल सिरीज",
+    "portfolio.video2.tag":"इंस्टाग्राम रील · आरोग्य जनजागृती मालिका · १:१७",
+    "portfolio.poster1":"अक्षय्य तृतीया ग्रीटिंग डिझाईन",
+    "portfolio.poster2":"डॉ. बाबासाहेब आंबेडकर जयंती डिझाईन",
+    "portfolio.poster3":"बुद्ध पौर्णिमा ग्रीटिंग डिझाईन",
+    "portfolio.poster4":"संकष्टी चतुर्थी ग्रीटिंग डिझाईन",
+    "portfolio.poster5":"संकष्टी चतुर्थी ग्रीटिंग डिझाईन",
+
+    "software.eyebrow":"टूलकिट",
+    "software.title":"इंडस्ट्री-स्टँडर्ड सॉफ्टवेअरने तयार",
+    "software.caption":"प्रत्येक प्रोजेक्ट या सॉफ्टवेअरच्या अद्ययावत, लायसन्स असलेल्या आवृत्तीत ॲनिमेट, एडिट आणि एक्सपोर्ट केला जातो.",
+    "software.tag.ae":"ॲनिमेशन आणि मोशन ग्राफिक्स","software.tag.pr":"एडिटिंग आणि कलर ग्रेडिंग",
+    "software.tag.ps":"डिझाईन आणि कंपोझिटिंग","software.tag.cd":"व्हेक्टर इलस्ट्रेशन",
+
+    "process.eyebrow":"कार्यपद्धती",
+    "process.title":"ब्रीफपासून अंतिम रेंडरपर्यंत",
+    "process.step1.title":"ब्रीफ आणि रेफरन्स",
+    "process.step1.desc":"तुमची उद्दिष्टे, ब्रँड ॲसेट्स आणि आवडलेले रेफरन्स रील्स शेअर करा — ब्रीफ जितका स्पष्ट, आउटपुट तितकाच अचूक.",
+    "process.step2.title":"संकल्पना आणि स्टोरीबोर्ड",
+    "process.step2.desc":"एकही फ्रेम ॲनिमेट होण्याआधी तुम्ही कल्पना मंजूर करावी यासाठी व्हिज्युअल दिशा आणि शॉट-बाय-शॉट स्टोरीबोर्ड.",
+    "process.step3.title":"ॲनिमेशन आणि मोशन डिझाईन",
+    "process.step3.desc":"तुमच्या ब्रँडचे रंग, फॉन्ट आणि गती लक्षात घेऊन After Effects मध्ये फ्रेम-दर-फ्रेम ॲनिमेशन.",
+    "process.step4.title":"साउंड आणि पॉलिश",
+    "process.step4.desc":"ब्रॉडकास्ट-रेडी फिनिशसाठी Premiere Pro मध्ये म्युझिक, SFX आणि कलर ग्रेडिंग जोडले जाते.",
+    "process.step5.title":"एक्सपोर्ट आणि डिलिव्हरी",
+    "process.step5.desc":"Reels, Shorts, Stories आणि YouTube साठी आधीच फॉरमॅट करून डिलिव्हर केले जाते — थेट पोस्ट करण्यासाठी तयार.",
+
+    "why.eyebrow":"SSJ सोबत का काम करावे",
+    "why.title":"छोटा स्टुडिओ. सीनियर-लेव्हल कारागिरी.",
+    "why.card1.title":"लेटेस्ट सॉफ्टवेअर",
+    "why.card1.desc":"After Effects, Premiere Pro, Photoshop आणि CorelDRAW च्या नेहमी अद्ययावत, लायसन्स असलेल्या आवृत्तीत काम.",
+    "why.card2.title":"प्लॅटफॉर्म-रेडी एक्सपोर्ट्स",
+    "why.card2.desc":"प्रत्येक प्रोजेक्ट Instagram, YouTube Shorts आणि Stories साठी आधीच योग्य आकारात डिलिव्हर केला जातो.",
+    "why.card3.title":"तुमच्या डिझायनरशी थेट संपर्क",
+    "why.card3.desc":"मध्ये कोणीही अकाउंट मॅनेजर नाही — तुम्ही थेट WhatsApp वर ब्रीफ आणि रिव्ह्यू करता.",
+    "why.card4.title":"तुमच्या ब्रीफनुसार तयार",
+    "why.card4.desc":"प्रत्येक ॲनिमेशन तुमच्या ब्रँडचे रंग, फॉन्ट आणि आवाज लक्षात घेऊन तयार केले जाते — कधीही सर्वसाधारण टेम्पलेट नाही.",
+
+    "contact.eyebrow":"संपर्क साधा",
+    "contact.title":"तुमची पुढची कल्पना ॲनिमेट करूया",
+    "contact.subhead":"तुमच्या प्रोजेक्टबद्दल सांगा, मी लवकरच प्लॅन आणि कोटसह संपर्क करेन.",
+    "contact.emailLabel":"ईमेल","contact.whatsappLabel":"व्हॉट्सॲप",
+    "contact.form.name":"नाव","contact.form.namePh":"तुमचे नाव",
+    "contact.form.contact":"ईमेल किंवा फोन नंबर","contact.form.contactPh":"तुमच्याशी कसे संपर्क साधू?",
+    "contact.form.type":"प्रोजेक्टचा प्रकार",
+    "contact.form.opt1":"कस्टम मोशन ग्राफिक्स","contact.form.opt2":"व्हिडिओ ॲड / रील",
+    "contact.form.opt3":"लोगो ॲनिमेशन","contact.form.opt4":"GIF ॲनिमेशन",
+    "contact.form.opt5":"एक्सप्लेनर व्हिडिओ","contact.form.opt6":"इतर",
+    "contact.form.message":"तुमचा मेसेज","contact.form.messagePh":"तुमच्या ब्रँडबद्दल आणि गरजेबद्दल थोडक्यात सांगा...",
+    "contact.form.submit":"ईमेलद्वारे पाठवा",
+    "contact.form.note":"यामुळे तुमचे ईमेल ॲप तुमचा तपशील भरून उघडेल.",
+
+    "footer.tagline":"मोशनच्या माध्यमातून कल्पनांना जिवंत करतो — पाहिले जावे असे वाटणाऱ्या ब्रँड्ससाठी कस्टम ॲनिमेशन आणि व्हिडिओ.",
+    "footer.linksHeading":"क्विक लिंक्स","footer.contactHeading":"संपर्क",
+    "footer.rights":"© 2026 SSJ Creative Graphics. सर्व हक्क राखीव."
+  }
+};
+
+let currentLang = 'en';
+
+function applyLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.body.classList.toggle('lang-mr', lang === 'mr');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    const val = translations[lang][key];
+    if(val == null) return;
+    if(el.hasAttribute('data-i18n-attr')){
+      el.setAttribute(el.getAttribute('data-i18n-attr'), val);
+    } else {
+      el.innerHTML = val;
+    }
+  });
+  document.getElementById('langToggleLabel').textContent = lang === 'en' ? 'मराठी' : 'English';
+}
+
+document.getElementById('langToggle').addEventListener('click', ()=>{
+  applyLang(currentLang === 'en' ? 'mr' : 'en');
+});
+
+/* =========================================================
+   HEADER SCROLL STATE
+========================================================= */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 12);
+}, {passive:true});
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+const navScrim = document.getElementById('navScrim');
+function closeNav(){
+  navToggle.classList.remove('open');
+  navLinks.classList.remove('open');
+  navScrim.classList.remove('open');
+  navToggle.setAttribute('aria-expanded','false');
+}
+navToggle.addEventListener('click', ()=>{
+  const open = navLinks.classList.toggle('open');
+  navToggle.classList.toggle('open', open);
+  navScrim.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navScrim.addEventListener('click', closeNav);
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeNav));
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('is-visible');
+      io.unobserve(entry.target);
+    }
+  });
+},{threshold:0.14, rootMargin:'0px 0px -60px 0px'});
+revealEls.forEach(el=>io.observe(el));
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+const lightbox = document.getElementById('lightbox');
+const lightboxMedia = document.getElementById('lightboxMedia');
+const lightboxCaption = document.getElementById('lightboxCaption');
+
+function openLightbox(trigger){
+  const videoSrc = trigger.getAttribute('data-lightbox-video');
+  const imgSrc = trigger.getAttribute('data-lightbox-img');
+  const capKey = trigger.getAttribute('data-lightbox-caption');
+  lightboxMedia.innerHTML = '';
+
+  if(videoSrc){
+    const v = document.createElement('video');
+    v.src = videoSrc;
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;
+    lightboxMedia.appendChild(v);
+  } else if(imgSrc){
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.alt = capKey ? (translations[currentLang][capKey] || '') : '';
+    lightboxMedia.appendChild(img);
+  }
+  lightboxCaption.textContent = capKey ? (translations[currentLang][capKey] || '') : '';
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lightboxMedia.innerHTML = '';
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('[data-lightbox-video], [data-lightbox-img]').forEach(el=>{
+  el.addEventListener('click', ()=>openLightbox(el));
+});
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+/* =========================================================
+   CONTACT FORM -> MAILTO
+========================================================= */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const fd = new FormData(this);
+  const name = fd.get('name') || '';
+  const contact = fd.get('contact') || '';
+  const type = fd.get('type') || '';
+  const message = fd.get('message') || '';
+  const subject = 'Project Enquiry - SSJ Creative Graphics';
+  const body =
+    'Name: ' + name + '\n' +
+    'Contact: ' + contact + '\n' +
+    'Project Type: ' + type + '\n\n' +
+    'Message:\n' + message;
+  window.location.href = 'mailto:ssjcreativegraphics@gmail.com?subject=' +
+    encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
