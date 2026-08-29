@@ -623,6 +623,8 @@ footer{
 body.lang-mr .footer-col h5{font-family:var(--ff-mr);text-transform:none;letter-spacing:0;}
 .footer-col a, .footer-col span{display:block;font-size:14.5px;color:var(--ink-200);margin-bottom:12px;}
 .footer-col a:hover{color:var(--teal-300);}
+.footer-col a.footer-whatsapp-btn{display:inline-flex;color:var(--navy-950);margin-top:6px;margin-bottom:0;}
+.footer-col a.footer-whatsapp-btn:hover{color:var(--navy-950);}
 .footer-bottom{
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
   padding-top:26px;border-top:1px solid var(--line-soft);
@@ -1059,7 +1061,7 @@ src="https://www.facebook.com/tr?id=1730725951476825&ev=PageView&noscript=1"
       </a>
       <a class="contact-link" href="https://wa.me/917303444470?text=Hi%20SSJ%20Creative%20Graphics%2C%20I%27d%20like%20to%20discuss%20a%20motion%20graphics%20project." target="_blank" rel="noopener">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.5 19L4 20z" stroke-linejoin="round"/><path d="M8.5 9.7c0 3 2.7 5.6 5.7 5.6" stroke-linecap="round"/></svg></span>
-        <span class="tx"><span data-i18n="contact.whatsappLabel">WhatsApp</span><b>+91 73034 44470</b></span>
+        <span class="tx"><span data-i18n="contact.whatsappLabel">WhatsApp</span><b data-i18n="contact.whatsappCta">WhatsApp Now</b></span>
       </a>
 
       <div class="timeline-scrub" aria-hidden="true" style="max-width:340px;margin-top:44px;">
@@ -1121,12 +1123,12 @@ src="https://www.facebook.com/tr?id=1730725951476825&ev=PageView&noscript=1"
         <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
         <a href="#process" data-i18n="nav.process">Process</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="privacy-policy.html" data-i18n="footer.privacyLink">Privacy Policy</a>
       </div>
       <div class="footer-col">
         <h5 data-i18n="footer.contactHeading">Contact</h5>
         <a href="mailto:ssjcreativegraphics@gmail.com">ssjcreativegraphics@gmail.com</a>
-        <a href="https://wa.me/917303444470" target="_blank" rel="noopener">+91 73034 44470</a>
+        <a href="https://wa.me/917303444470?text=Hi%20SSJ%20Creative%20Graphics%2C%20I%27d%20like%20to%20discuss%20a%20motion%20graphics%20project." target="_blank" rel="noopener" class="btn btn-primary btn-sm footer-whatsapp-btn" data-i18n="footer.whatsappCta">WhatsApp Now</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1223,7 +1225,7 @@ const translations = {
     "contact.eyebrow":"Get In Touch",
     "contact.title":"Let's animate your next idea",
     "contact.subhead":"Tell me about your project and I'll get back to you with a plan and quote.",
-    "contact.emailLabel":"Email","contact.whatsappLabel":"WhatsApp",
+    "contact.emailLabel":"Email","contact.whatsappLabel":"WhatsApp","contact.whatsappCta":"WhatsApp Now",
     "contact.form.name":"Name","contact.form.namePh":"Your name",
     "contact.form.contact":"Email or Phone","contact.form.contactPh":"How can I reach you?",
     "contact.form.type":"Project Type",
@@ -1235,8 +1237,8 @@ const translations = {
     "contact.form.note":"This opens your email app with your details filled in.",
 
     "footer.tagline":"Bringing ideas to life through motion — custom animation and video for brands that want to be seen.",
-    "footer.linksHeading":"Quick Links","footer.contactHeading":"Contact",
-    "footer.rights":"© 2026 SSJ Creative Graphics. All rights reserved."
+    "footer.linksHeading":"Quick Links","footer.contactHeading":"Contact","footer.privacyLink":"Privacy Policy",
+    "footer.rights":"© 2026 SSJ Creative Graphics. All rights reserved.","footer.whatsappCta":"WhatsApp Now"
   },
   mr: {
     "nav.services":"सेवा","nav.portfolio":"पोर्टफोलिओ","nav.software":"सॉफ्टवेअर",
@@ -1309,7 +1311,7 @@ const translations = {
     "contact.eyebrow":"संपर्क साधा",
     "contact.title":"तुमची पुढची कल्पना ॲनिमेट करूया",
     "contact.subhead":"तुमच्या प्रोजेक्टबद्दल सांगा, मी लवकरच प्लॅन आणि कोटसह संपर्क करेन.",
-    "contact.emailLabel":"ईमेल","contact.whatsappLabel":"व्हॉट्सॲप",
+    "contact.emailLabel":"ईमेल","contact.whatsappLabel":"व्हॉट्सॲप","contact.whatsappCta":"आत्ताच व्हॉट्सॲप करा",
     "contact.form.name":"नाव","contact.form.namePh":"तुमचे नाव",
     "contact.form.contact":"ईमेल किंवा फोन नंबर","contact.form.contactPh":"तुमच्याशी कसे संपर्क साधू?",
     "contact.form.type":"प्रोजेक्टचा प्रकार",
@@ -1321,8 +1323,8 @@ const translations = {
     "contact.form.note":"यामुळे तुमचे ईमेल ॲप तुमचा तपशील भरून उघडेल.",
 
     "footer.tagline":"मोशनच्या माध्यमातून कल्पनांना जिवंत करतो — पाहिले जावे असे वाटणाऱ्या ब्रँड्ससाठी कस्टम ॲनिमेशन आणि व्हिडिओ.",
-    "footer.linksHeading":"क्विक लिंक्स","footer.contactHeading":"संपर्क",
-    "footer.rights":"© 2026 SSJ Creative Graphics. सर्व हक्क राखीव."
+    "footer.linksHeading":"क्विक लिंक्स","footer.contactHeading":"संपर्क","footer.privacyLink":"प्रायव्हसी पॉलिसी",
+    "footer.rights":"© 2026 SSJ Creative Graphics. सर्व हक्क राखीव.","footer.whatsappCta":"आत्ताच व्हॉट्सॲप करा"
   }
 };
 
